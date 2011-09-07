@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Attempts to behave identically to a plain `find' command while ignoring .svn/
+# directories.
+
+OPTIONS=()
+PATHS=()
+EXPR=()
+
+while [[ $1 =~ ^-[HLP]+ ]]; do
+    OPTIONS+=("$1")
+    shift
+done
+
+while [[ $# -gt 0 ]] && ! [[ $1 =~ '^[-(),!]' ]]; do
+    PATHS+=("$1")
+    shift
+done
+
+# If user's expression contains no action then we'll add the normally-implied
+# `-print'.
+ACTION=-print
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+       -delete|-exec|-execdir|-fls|-fprint|-fprint0|-fprintf|-ok|-print|-okdir|-print0|-printf|-prune|-quit|-ls)
+            ACTION=;;
+    esac
+
+    EXPR+=("$1")
+    shift
+done
+
+if [[ ${#EXPR} -eq 0 ]]; then
+    EXPR=(-true)
+fi
+
+
+ exec -a "$(basename "$0")" find "${OPTIONS[@]}" "${PATHS[@]}" -name .svn -type d -prune -o '(' "${EXPR[@]}" ')' $ACTION
