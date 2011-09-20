@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.spartan</groupId>
+  <artifactId>springmvc</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>springmvc Spring-WS Application</name>
+  <url>http://www.springframework.org/spring-ws</url>
+  <build>
+    <finalName>springmvc</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>8.0.0.M2</version>
+        <configuration>
+          <stopKey>STOP</stopKey>
+          <stopPort>8089</stopPort>
+          <!-- scanIntervalSeconds=0 disables automatic reload -->
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <systemProperties>
+            <systemProperty>
+              <name>ssorestPropertyLocation</name>
+              <value>config/ssorest.properties</value>
+            </systemProperty>
+          </systemProperties>
+          <connectors>
+            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+              <port>8080</port>
+              <maxIdleTime>30000</maxIdleTime>
+            </connector>
+
+            <!-- SSL -->
+            <!-- 
+            <connector implementation="org.eclipse.jetty.server.ssl.SslSelectChannelConnector">
+              <port>8443</port>
+              <maxIdleTime>30000</maxIdleTime>
+              <keystore>${basedir}/etc/keystore</keystore>
+              <password>password</password>
+              <keyPassword>password</keyPassword>
+              <includeCipherSuites>
+                <includeCipherSuite>TLS_DHE_DSS_WITH_AES_128_CBC_SHA</includeCipherSuite>
+                <includeCipherSuite>TLS_DHE_RSA_WITH_AES_128_CBC_SHA</includeCipherSuite>
+                <includeCipherSuite>TLS_RSA_WITH_AES_128_CBC_SHA</includeCipherSuite>
+                <includeCipherSuite>TLS_DHE_DSS_WITH_AES_256_CBC_SHA</includeCipherSuite>
+                <includeCipherSuite>TLS_DHE_RSA_WITH_AES_256_CBC_SHA</includeCipherSuite>
+                <includeCipherSuite>TLS_RSA_WITH_AES_256_CBC_SHA</includeCipherSuite>
+              </includeCipherSuites>
+            </connector>
+            -->
+          </connectors>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <!-- spring MVC servlet framework -->
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>3.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <!-- jackson mapper is used by spring for mapping JSON to/from beans -->
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.7.1</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
