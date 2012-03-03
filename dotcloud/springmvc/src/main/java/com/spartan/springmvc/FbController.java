@@ -26,7 +26,7 @@ public class FbController {
     @RequestMapping(method = RequestMethod.GET)
     public String hello() {
         logger.info("facebook request came in");
-        return "hello";
+        return "hello_get";
     }
 
     @RequestMapping(method = RequestMethod.POST)

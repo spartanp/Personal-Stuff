@@ -34,5 +34,17 @@
 		<servlet-name>spring-mvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+	    
+  <filter-name>WebResourceOptimizer</filter-name>
+  <filter-class>
+    ro.isdc.wro.http.WroFilter
+  </filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>WebResourceOptimizer</filter-name>
+  <url-pattern>/wro/*</url-pattern>
+</filter-mapping>
 
 </web-app>

@@ -2,7 +2,7 @@
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home/
 
 # export home bin to path
-export PATH=~/bin:$PATH
+export PATH=~/bin:/opt/mongodb-osx-x86_64-2.0.2/bin:$PATH
 
 # constant contact
 
@@ -11,3 +11,50 @@ alias d1scapi="ssh c1-vmdjb146.roving.com"
 alias d1sclp="ssh c1-vmdjb145.roving.com"
 alias d1scui="ssh c1-vmdjb140.roving.com"
 alias dochost="ssh constantcontact@192.168.96.69"
+
+alias scrf1="ssh p2-vmf1jb150"
+alias scuif1="ssh p2-vmf1jb138"
+
+alias scrd1="ssh c1-vmdjb148.roving.com"
+
+alias scrl1="ssh p2-vml1jb188"
+alias scr2l1="ssh p2-vml1jb189"
+alias scuil1="ssh p2-vml1jb169"
+alias scapil1="ssh p2-vml1jb189"
+
+alias smvm1="ssh c1-vmdjb236"
+alias devm="ssh c1-vmdjb147"
+alias stc="/opt/tomcat/bin/startup.sh"
+alias ktc="/opt/tomcat/bin/shutdown.sh"
+
+# node
+export NODE_PATH="/usr/local/lib/node_modules"
+
+# cool git prompt
+__h_old_ps1=$PS1
+
+__h_git_prompt()
+{
+  local branch=`git branch 2>/dev/null|grep -e '*'|sed -e 's/^* //'`
+
+  if [ "$branch" ]
+  then
+    local git_dir=$(git rev-parse --git-dir)
+
+    if [ $git_dir = .git ]
+    then
+      git_dir=$PWD
+    else
+      git_dir=$(dirname $git_dir)
+    fi
+
+    local repo_name=$(basename $git_dir)
+    local repo_dir="${PWD:$((${#git_dir} + 1))}"
+
+    PS1="\\[\\e[0;32m\\]$repo_name \\[\\e[0;36m\\]$branch\\[\\e[0m\\] $repo_dir\\\$ "
+  else
+    PS1="$__h_old_ps1"
+  fi
+}
+
+PROMPT_COMMAND=__h_git_prompt

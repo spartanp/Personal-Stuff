@@ -1,0 +1,6 @@
+<groups xmlns="http://www.isdc.ro/wro">
+  <group name="hello">
+    <js minimize="true">/static/js/hello.js</js>
+  </group>
+
+</groups>

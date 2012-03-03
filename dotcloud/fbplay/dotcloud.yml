@@ -1,0 +1,3 @@
+www:
+    type: java
+    approot: /Users/pnataraj/pdev/pstuff/dotcloud/springmvc/target
