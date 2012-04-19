@@ -30,6 +30,9 @@ alias ktc="/opt/tomcat/bin/shutdown.sh"
 # node
 export NODE_PATH="/usr/local/lib/node_modules"
 
+# feperf
+alias start_perf_db="mongod --dbpath ~/tmp/feperfdb"
+
 # cool git prompt
 __h_old_ps1=$PS1
 
@@ -58,3 +61,6 @@ __h_git_prompt()
 }
 
 PROMPT_COMMAND=__h_git_prompt
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
